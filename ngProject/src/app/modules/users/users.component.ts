@@ -19,7 +19,6 @@ export class UsersComponent implements OnInit{
                         .subscribe( users => this.bindUser(users))
     }
     bindUser(users:IUser[]){
-        console.log(users);
         this.users=users;
     }
 }
