@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http'
 import { NgModule }      from '@angular/core';
 import { RouterModule } from '@angular/router'
 
@@ -15,6 +16,7 @@ import { UsersRouting } from './modules/users/users.routing'
 @NgModule({
   imports:      [ 
                   BrowserModule,
+                  HttpModule,
                   //keep child routing above parent routing
                   HomeRouting,
                   PostsRouting,
