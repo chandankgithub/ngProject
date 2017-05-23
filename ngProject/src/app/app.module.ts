@@ -13,6 +13,7 @@ import { HomeComponent } from './modules/home/home.component'
 import { HomeRouting } from './modules/home/home.routing'
 import { MainNavbarComponent } from './modules/shared/main-navbar.component';
 import { NewUserComponent } from './modules/users/new.user.component'
+import { NotFoundComponent } from './not-found.component'
 import { PostsComponent } from './modules/posts/posts.component'
 import { PostsRouting } from './modules/posts/posts.routing'
 import { PreventUnsavedChangesGuardService } from './route-guards/prevent-unsaved-changes-guard.services'
@@ -41,7 +42,8 @@ import { UserService } from './modules/users/user.service'
                     HomeComponent,
                     UsersComponent,
                     PostsComponent,
-                    NewUserComponent
+                    NewUserComponent,
+                    NotFoundComponent
                 ],
   bootstrap:    [ AppComponent ],
   providers: [

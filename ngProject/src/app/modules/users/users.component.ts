@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 
-import {IUser} from './IUser'
+import {User} from './User'
 import { UserService } from './user.service'
 
 @Component({
@@ -9,16 +9,18 @@ import { UserService } from './user.service'
     providers: [UserService]
 })
 export class UsersComponent implements OnInit{
-    users:IUser[];
+    users:User[];
 
     constructor(private _service: UserService){
 
     }
+    
     ngOnInit(){
         this._service.getUsers()
                         .subscribe( users => this.bindUser(users))
     }
-    bindUser(users:IUser[]){
+
+    bindUser(users:User[]){
         this.users=users;
     }
 }

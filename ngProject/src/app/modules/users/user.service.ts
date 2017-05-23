@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/map'
 
 
-import { IUser } from './IUser'
+import { User } from './User'
 
 @Injectable()
 export class UserService{
@@ -13,14 +13,19 @@ export class UserService{
 
     }
     
-    getUsers(): Observable<IUser[]>{
+    getUsers(): Observable<User[]>{
         return this._http.get(this._url)
-        .map(res => <IUser[]> res.json())
+        .map(res => <User[]> res.json())
     }
 
-    addUser(user):Observable<IUser[]>{
+    addUser(user:any):Observable<User[]>{
         console.log(user)
         return this._http.post(this._url, JSON.stringify(user))
-			.map(res => <IUser[]> res.json());
+			.map(res => <User[]> res.json());
+    }
+    
+    getUser(id:number): Observable<User>{
+        return this._http.get(this._url + '/' + id)
+                .map( response => <User> response.json())
     }
 }
