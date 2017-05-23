@@ -3,7 +3,6 @@ import { FormControl } from '@angular/forms'
 export class UserFormValidator{
     
     static validateEmail(control: FormControl){
-        console.log(control);
         var controlValue = control.value;
         let REG_EXP = /[^ @]*@[^ @]*/;
 

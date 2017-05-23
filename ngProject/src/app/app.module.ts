@@ -15,6 +15,7 @@ import { MainNavbarComponent } from './modules/shared/main-navbar.component';
 import { NewUserComponent } from './modules/users/new.user.component'
 import { PostsComponent } from './modules/posts/posts.component'
 import { PostsRouting } from './modules/posts/posts.routing'
+import { PreventUnsavedChangesGuardService } from './route-guards/prevent-unsaved-changes-guard.services'
 import { UsersComponent } from './modules/users/users.component'
 import { UsersRouting } from './modules/users/users.routing'
 
@@ -42,7 +43,10 @@ import { UsersRouting } from './modules/users/users.routing'
                     NewUserComponent
                 ],
   bootstrap:    [ AppComponent ],
-  providers: [FormBuilder],
+  providers: [
+                    FormBuilder,
+                    PreventUnsavedChangesGuardService
+             ]
 
 })
 export class AppModule { }

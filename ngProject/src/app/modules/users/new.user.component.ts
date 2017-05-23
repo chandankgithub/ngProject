@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core'
 import { FormGroup, FormControl, FormBuilder, Validators  } from '@angular/forms'
 
+import { IFormComponent } from '../../common-lib/IFormComponent'
 import { UserFormValidator } from './user-form.validator'
+
 @Component({
     selector: 'new-user',
     templateUrl:'./new.user.component.html'
 })
-export class NewUserComponent implements OnInit{
+export class NewUserComponent implements OnInit, IFormComponent{
     _signupform: FormGroup;
     _emailexpression: "/[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm"
 
@@ -33,5 +35,9 @@ export class NewUserComponent implements OnInit{
 
     signup(){
         // console.log(this._signupform.value);
+    }
+
+    isFormDirty(): boolean{
+        return this._signupform.dirty
     }
 }
