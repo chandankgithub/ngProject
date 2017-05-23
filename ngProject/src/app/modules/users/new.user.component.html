@@ -5,17 +5,16 @@
     <form [formGroup]="_signupform" (ngSubmit)="signup()">
         <fieldset>
             <legend>User</legend>
-            <div formGroupName="user">
-                <label for="">Name</label>
+            <label for="">Name</label>
                 <div class="form-group">
                     <input  formControlName="name" 
                             type="text" 
                             class="form-control">
                             
-                        <div *ngIf="_signupform.controls.user.controls.name.touched && 
-                                        _signupform.controls.user.controls.name.errors">
+                        <div *ngIf="_signupform.controls.name.touched && 
+                                        _signupform.controls.name.errors">
                             <p class="alert alert-danger" 
-                                *ngIf="_signupform.controls.user.controls.name.errors.required">
+                                *ngIf="_signupform.controls.name.errors.required">
                                     Name is required.
                             </p>
                         </div>
@@ -29,14 +28,14 @@
                             class="form-control"
                             formControlName="email">
 
-                            <div *ngIf="_signupform.controls.user.controls.email.touched && 
-                                            _signupform.controls.user.controls.email.errors">
+                            <div *ngIf="_signupform.controls.email.touched && 
+                                            _signupform.controls.email.errors">
                                 <p class="alert alert-danger"
-                                    *ngIf="_signupform.controls.user.controls.email.errors.required">
+                                    *ngIf="_signupform.controls.email.errors.required">
                                     Email is required.
                                 </p>
                                  <p class="alert alert-danger"
-                                    *ngIf="!_signupform.controls.user.controls.email.errors.validEmail">
+                                    *ngIf="!_signupform.controls.email.errors.required && !_signupform.controls.email.errors.validEmail">
                                     Please type a valid email.
                                 </p>
                             </div>
@@ -47,7 +46,6 @@
                             class="form-control"
                             formControlName="phone">
                 </div>
-            </div>
         </fieldset>
 
         <fieldset>

@@ -14,12 +14,10 @@ export class NewUserComponent implements OnInit, IFormComponent{
 
     constructor(){
         this._signupform= new FormGroup({
-                user: new FormGroup({
-                    name: new FormControl('', Validators.required),
-                    email: new FormControl('', Validators.compose([Validators.required, 
-                                                            UserFormValidator.validateEmail]) ),
-                    phone: new FormControl('')
-                }),
+                name: new FormControl('', Validators.required),
+                email: new FormControl('', Validators.compose([Validators.required, 
+                                                        UserFormValidator.validateEmail]) ),
+                phone: new FormControl(''),
                 address: new FormGroup({
                     street: new FormControl(''),
                     suite: new FormControl(''),
