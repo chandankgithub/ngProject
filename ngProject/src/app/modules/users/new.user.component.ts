@@ -55,12 +55,15 @@ export class NewUserComponent implements
     }
 
     signup() {
-        //console.log(this._signupform.value);
-        this._service.addUser(this._signupform.value)
-            .subscribe(u => {
-                this._signupform.reset()
-                this._router.navigate(['users'])
-            })
+        if(this._user && this._user.id){
+            //edit user
+            this.editUser();
+        }
+        else {
+            // add user
+            this.addUser();
+        }
+        
     }
 
     isFormDirty(): boolean{
@@ -84,6 +87,26 @@ export class NewUserComponent implements
 
     populateUser(user:User){
         this._user=user;
+    }
+
+    addUser(){
+        this._service.addUser(this._user)
+                    .subscribe(u => {
+                        this._signupform.reset()
+                        this._router.navigate(['users'])
+            })
+    }
+
+    editUser(){
+
+        if(this._user){
+            this._service.editUser(this._user)
+                .subscribe( u => {
+                        this._signupform.reset();
+                        this._router.navigate(['users'])
+            })
+        }
+                    
     }
 
     onError(err:any){

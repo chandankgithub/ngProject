@@ -9,6 +9,7 @@ import { User } from './User'
 @Injectable()
 export class UserService{
     _url:string = "https://jsonplaceholder.typicode.com/users"
+    _postUrl:string ="http://jsonplaceholder.typicode.com/posts"
     constructor(private _http: Http){
 
     }
@@ -18,12 +19,15 @@ export class UserService{
         .map(res => <User[]> res.json())
     }
 
-    addUser(user:any):Observable<User[]>{
-        console.log(user)
-        return this._http.post(this._url, JSON.stringify(user))
-			.map(res => <User[]> res.json());
+    addUser(user:any):Observable<User>{
+        return this._http.post(this._postUrl, JSON.stringify(user))
+			.map(res => <User> res.json());
     }
     
+    editUser(user:User): Observable<User>{
+        return this._http.put(this._postUrl + '/' + user.id, JSON.stringify(user))
+            .map(response => <User>response.json());
+    }
     getUser(id:number): Observable<User>{
         return this._http.get(this._url + '/' + id)
                 .map( response => <User> response.json())
