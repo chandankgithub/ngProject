@@ -18,6 +18,7 @@ import { PostsRouting } from './modules/posts/posts.routing'
 import { PreventUnsavedChangesGuardService } from './route-guards/prevent-unsaved-changes-guard.services'
 import { UsersComponent } from './modules/users/users.component'
 import { UsersRouting } from './modules/users/users.routing'
+import { UserService } from './modules/users/user.service'
 
 
 
@@ -45,7 +46,8 @@ import { UsersRouting } from './modules/users/users.routing'
   bootstrap:    [ AppComponent ],
   providers: [
                     FormBuilder,
-                    PreventUnsavedChangesGuardService
+                    PreventUnsavedChangesGuardService,
+                    UserService
              ]
 
 })

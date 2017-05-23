@@ -17,4 +17,10 @@ export class UserService{
         return this._http.get(this._url)
         .map(res => <IUser[]> res.json())
     }
+
+    addUser(user):Observable<IUser[]>{
+        console.log(user)
+        return this._http.post(this._url, JSON.stringify(user))
+			.map(res => <IUser[]> res.json());
+    }
 }
