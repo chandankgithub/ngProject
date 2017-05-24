@@ -1,4 +1,8 @@
-<h1>Users</h1>
+<h1>Users <span *ngIf="networkException">
+                (Network Down)
+            </span>
+</h1>
+
 <div>
     <a class="btn btn-primary" routerLink="new">Add User</a>
 </div>
@@ -22,7 +26,7 @@
                     <a [routerLink]="[user.id]" class="glyphicon glyphicon-edit"></a>
                 </td>
                 <td>
-                    <a class="glyphicon glyphicon-remove"></a>
+                    <a (click)="deleteUser(user)" class="glyphicon glyphicon-remove"></a>
                 </td>
             </tr>
         </tbody>

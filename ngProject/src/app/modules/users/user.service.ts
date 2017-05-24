@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/map'
 
 
-import { User } from './User'
+import { User, DefaultUsers } from './User'
 
 @Injectable()
 export class UserService{
@@ -28,8 +28,19 @@ export class UserService{
         return this._http.put(this._postUrl + '/' + user.id, JSON.stringify(user))
             .map(response => <User>response.json());
     }
+
+    /**deleteUser will return nothing */
+    deleteUser(user:User) {
+        return this._http.delete(this._postUrl + '/' + user.id)
+                    .map(response =>  response.json())
+    }
+
     getUser(id:number): Observable<User>{
         return this._http.get(this._url + '/' + id)
                 .map( response => <User> response.json())
+    }
+
+    getDefaultUsers(){
+         return new DefaultUsers().getDefaultUserList();
     }
 }
