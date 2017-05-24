@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core'
 import {User} from './User'
 import { UserService } from './user.service'
 
+import 'rxjs/add/operator/delay'
+
 @Component({
     selector: 'users',
     templateUrl: './users.component.html',
@@ -18,6 +20,7 @@ import { UserService } from './user.service'
 export class UsersComponent implements OnInit{
     users:User[];
     networkException:boolean=false;
+    private _isLoading:boolean=true;
 
     constructor(private _service: UserService){
 
@@ -25,6 +28,7 @@ export class UsersComponent implements OnInit{
     
     ngOnInit(){
         this._service.getUsers()
+                        .delay(2000)
                         .subscribe( users => {
                                                 this.bindUser(users)
                                             },
@@ -34,10 +38,15 @@ export class UsersComponent implements OnInit{
 
     bindUser(users:User[]){
         this.users=users;
+        this._isLoading=false;
     }
 
     bindDefaultUsers(){
+        setTimeout(function() {
+            this._isLoading=false;
+        }, 2000);
         this.networkException=true;
+        
         this.users = this._service.getDefaultUsers()
     }
 

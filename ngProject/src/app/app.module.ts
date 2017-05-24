@@ -16,7 +16,9 @@ import { NewUserComponent } from './modules/users/new.user.component'
 import { NotFoundComponent } from './not-found.component'
 import { PostsComponent } from './modules/posts/posts.component'
 import { PostsRouting } from './modules/posts/posts.routing'
+import { PostService } from './modules/posts/post.service'
 import { PreventUnsavedChangesGuardService } from './route-guards/prevent-unsaved-changes-guard.services'
+import { SpinnerComponent } from './modules/shared/spinner.component'
 import { UsersComponent } from './modules/users/users.component'
 import { UsersRouting } from './modules/users/users.routing'
 import { UserService } from './modules/users/user.service'
@@ -43,13 +45,15 @@ import { UserService } from './modules/users/user.service'
                     UsersComponent,
                     PostsComponent,
                     NewUserComponent,
-                    NotFoundComponent
+                    NotFoundComponent,
+                    SpinnerComponent
                 ],
   bootstrap:    [ AppComponent ],
   providers: [
                     FormBuilder,
                     PreventUnsavedChangesGuardService,
-                    UserService
+                    UserService,
+                    PostService
              ]
 
 })

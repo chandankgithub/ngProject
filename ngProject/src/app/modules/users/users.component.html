@@ -19,6 +19,13 @@
             </tr>
         </thead>
         <tbody>
+            <tr *ngIf="_isLoading">
+                <td colspan="4">
+                    <div style="text-align: center">
+                        <spinner [visible]="_isLoading"> </spinner>
+                    </div>
+                </td>
+            </tr>
             <tr *ngFor="let user of users">
                 <td>{{user.name}}</td>
                 <td>{{user.email}}</td>
