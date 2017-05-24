@@ -4,10 +4,12 @@ import { Observable } from 'rxjs/Observable'
 
 import 'rxjs/add/operator/map'
 import { Post, DefaultPosts } from './post'
+import { PostComment } from './post-comment'
 
 @Injectable()
 export class PostService{
     private _getUrl:string= 'https://jsonplaceholder.typicode.com/posts'
+    private _postUrl: string = "https://jsonplaceholder.typicode.com/post"
 
     constructor(private _http:Http){
 
@@ -20,5 +22,14 @@ export class PostService{
 
     getDefaultPosts(): Post[]{
         return new DefaultPosts().getDefaultPosts()
+    }
+
+    getPostCommentsById(post:Post):Observable<PostComment[]>{
+        let commentUrl = this._postUrl + '/' + post.id + '/comments';
+        return this._http.get(commentUrl)
+        .map(response => {
+            console.log(response.json());
+            return <PostComment[]> response.json()
+        })
     }
 }
