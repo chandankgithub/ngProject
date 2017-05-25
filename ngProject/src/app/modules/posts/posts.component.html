@@ -7,15 +7,30 @@
     </h1>
     
     <div class="col-md-6">
-        <spinner [visible]="_postsLoading"></spinner>
-        <ul class="list-group posts">
-            <li class="list-group-item" 
-                [ngClass]="{
-                    'active':_selectedIndex === i
-                }"
-                (click)="selectPostItem(post, i)"
-                *ngFor ="let post of _posts, let i=index">{{post.title}}</li>
-        </ul>
+        <div>
+            <spinner [visible]="_postsLoading"></spinner>
+        </div>
+        <div *ngIf="!_postsLoading">
+            <ul class="list-group posts">
+                <div>
+                    <select class="form-control" 
+                            [(ngModel)]="selectedVal"
+                            (change)="userChanged(selectedVal)">
+                        <option *ngFor="let user of _users"
+                                [ngValue]="user.id">{{user.name}}</option>
+                    </select>
+                </div>
+                <spinner [visible]="_isUserPostsLoading"></spinner>
+                <li class="list-group-item" 
+                    [ngClass]="{
+                        'active':_selectedIndex === i
+                    }"
+                    (click)="selectPostItem(post, i)"
+                    *ngFor ="let post of _posts, let i=index">{{post.title}}
+                </li>
+            </ul>
+        </div>
+        
     </div>
    <div class="col-md-6" *ngIf="_showPostDetail">
     <div class="panel panel-default">

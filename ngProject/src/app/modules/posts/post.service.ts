@@ -20,6 +20,13 @@ export class PostService{
                 .map(response => <Post[]> response.json())
     }
 
+    getPostsByUser(id: number): Observable<Post[]>{
+        let userPostUrl=this._getUrl + '?userId=' + id;
+        return this._http.get(userPostUrl)
+        .map(response => {
+                    return <Post[]> response.json()
+                })
+    }
     getDefaultPosts(): Post[]{
         return new DefaultPosts().getDefaultPosts()
     }
@@ -28,7 +35,7 @@ export class PostService{
         let commentUrl = this._postUrl + '/' + post.id + '/comments';
         return this._http.get(commentUrl)
         .map(response => {
-            console.log(response.json());
+            
             return <PostComment[]> response.json()
         })
     }
