@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core'
 
+import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/delay'
+import 'rxjs/add/operator/skip'
+import 'rxjs/add/operator/take'
+import 'rxjs/add/observable/from';
 import { Post } from './post'
 import { PostComment } from './post-comment'
 import { PostService } from './post.service'
@@ -36,6 +40,9 @@ export class PostsComponent implements OnInit{
     private _comments: PostComment[]
     private _users:User[]
     private _isUserPostsLoading:boolean= false;
+    private _pageSize: number=10;
+
+    private _allPosts: Post[]
 
     constructor(private _postService: PostService,
                 private _userService: UserService){
@@ -54,11 +61,16 @@ export class PostsComponent implements OnInit{
             .subscribe(p => this.bindPosts(p),
             (err) => {
                 this.bindDefaultPosts();
-            })
+            },
+            () => {
+                // this._postsLoading=false;
+                // this._isUserPostsLoading=false;
+            } )
     }
 
     private bindPosts(posts: Post[]){
         this._posts = posts;
+        this._allPosts=posts;
         this._postsLoading=false;
         this._isUserPostsLoading=false;
     }
@@ -78,6 +90,8 @@ export class PostsComponent implements OnInit{
         this._postsLoading=false
         this._isUserPostsLoading=false;
         this._posts = this._postService.getDefaultPosts();
+        this._allPosts=this._posts;
+        this.loadPostsByPageNumber();
     }
 
     private selectPostItem(post:Post, index:number){
@@ -118,7 +132,6 @@ export class PostsComponent implements OnInit{
     }
 
     private userChanged(userId: number){
-//        console.log(userId)
         this._posts = null
         this._isUserPostsLoading = true;
         this._showPostDetail=false;
@@ -135,6 +148,17 @@ export class PostsComponent implements OnInit{
         user.id=-1;
         user.name='Select User ...'
         this._users.unshift(user)
+    }
+
+    private loadPostsByPageNumber(pageNo?: number){
+        this._showPostDetail=false;
+        pageNo = pageNo? pageNo: 1;
+        let posts:Post[]=[]
+        let skip = this._pageSize*(pageNo - 1);
+        
+        Observable.from(this._allPosts).skip(skip).take(this._pageSize)
+        .subscribe(x => posts.push(x))
+        this._posts=posts;
     }
    
 }

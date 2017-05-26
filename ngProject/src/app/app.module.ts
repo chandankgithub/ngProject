@@ -14,6 +14,7 @@ import { HomeRouting } from './modules/home/home.routing'
 import { MainNavbarComponent } from './modules/shared/main-navbar.component';
 import { NewUserComponent } from './modules/users/new.user.component'
 import { NotFoundComponent } from './not-found.component'
+import { PaginationComponent } from './modules/shared/pagination.component'
 import { PostsComponent } from './modules/posts/posts.component'
 import { PostsRouting } from './modules/posts/posts.routing'
 import { PostService } from './modules/posts/post.service'
@@ -46,7 +47,8 @@ import { UserService } from './modules/users/user.service'
                     PostsComponent,
                     NewUserComponent,
                     NotFoundComponent,
-                    SpinnerComponent
+                    SpinnerComponent,
+                    PaginationComponent
                 ],
   bootstrap:    [ AppComponent ],
   providers: [

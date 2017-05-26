@@ -21,6 +21,11 @@
                     </select>
                 </div>
                 <spinner [visible]="_isUserPostsLoading"></spinner>
+                <div>
+                        <pagination [itemLength]="_allPosts.length" [pageSize]="_pageSize"
+                                (onPageChanged)="loadPostsByPageNumber($event)"></pagination>
+                </div>
+               
                 <li class="list-group-item" 
                     [ngClass]="{
                         'active':_selectedIndex === i

@@ -42,8 +42,9 @@ export class UsersComponent implements OnInit{
     }
 
     bindDefaultUsers(){
+        //this._isLoading=false;
         setTimeout(function() {
-            this._isLoading=false;
+            this._isLoading=true;
         }, 2000);
         this.networkException=true;
         
