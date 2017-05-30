@@ -1,0 +1,4 @@
+{
+    "proxy" : "http://10.131.60.254:8080",
+    "rejectUnauthorized" : false
+}
