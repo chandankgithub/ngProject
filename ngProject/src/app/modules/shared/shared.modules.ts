@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
 
-import { MainNavbarComponent } from './main-navbar.component';
-import { PaginationComponent } from './pagination.component'
-import { SpinnerComponent } from './spinner.component'
+import { MainNavbarComponent } from './component/navbar/main-navbar.component';
+import { PaginationComponent } from './component/pagination/pagination.component';
+import { SpinnerComponent } from './component/spinner/spinner.component';
 
 import { AppRouting } from '../../app.routing'
 import { HomeRouting } from '../home/home.routing'

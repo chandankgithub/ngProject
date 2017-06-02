@@ -9,17 +9,37 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" routerLink="home">ngProject</a>
+                <a class="navbar-brand" routerLink="home">
+                    <img src="app/assets/images/copy-box.jpg"  class="img-circle" alt="">
+                </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li routerLinkActive="active">
-                        <a routerLink="users">Users</a>
+                        <a 
+                            *ngIf="auth.isAuthenticated()"
+                            routerLink="users">Users</a>
                 </li>
                 <li routerLinkActive="active">
-                        <a routerLink="posts">Posts</a>
+                        <a 
+                            *ngIf="auth.isAuthenticated()"
+                            routerLink="posts">Posts</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a  href="#"
+                        *ngIf="!auth.isAuthenticated()"
+                        (click)="auth.login()"> Login 
+                    </a>
+                </li>
+               <li>
+                    <a  href="#"
+                        *ngIf="auth.isAuthenticated()"
+                        (click)="auth.logout()"> Logout 
+                    </a>
                 </li>
             </ul>
         </div>

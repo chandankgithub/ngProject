@@ -1,3 +1,4 @@
+import { AuthService } from './modules/shared/services/authentication/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http'
 import { NgModule } from '@angular/core';
@@ -27,8 +28,14 @@ import { PreventUnsavedChangesGuardService } from './route-guards/prevent-unsave
   ],
   bootstrap: [AppComponent],
   providers: [
-      PreventUnsavedChangesGuardService
+      PreventUnsavedChangesGuardService,
+      AuthService
   ]
 
 })
-export class AppModule { }
+export class AppModule {
+
+    constructor(private auth: AuthService){
+        this.auth.handleAuthentication();
+    }
+ }
