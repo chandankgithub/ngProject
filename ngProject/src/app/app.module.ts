@@ -1,3 +1,4 @@
+import { NotificationService } from './modules/shared/services/notification.service';
 import { AuthService } from './modules/shared/services/authentication/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http'
@@ -29,7 +30,8 @@ import { PreventUnsavedChangesGuardService } from './route-guards/prevent-unsave
   bootstrap: [AppComponent],
   providers: [
       PreventUnsavedChangesGuardService,
-      AuthService
+      AuthService,
+      NotificationService
   ]
 
 })

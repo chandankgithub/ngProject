@@ -1,3 +1,4 @@
+import { NotificationService } from './../shared/services/notification.service';
 import { Component, OnInit, OnDestroy } from '@angular/core'
 import { FormGroup, FormControl, FormBuilder, Validators  } from '@angular/forms'
 import { Router, ActivatedRoute } from '@angular/router'
@@ -25,6 +26,7 @@ export class NewUserComponent implements
     }
     
     constructor(private _service: UserService,
+                private _notificationService: NotificationService,
                 private _router: Router,
                 private _route: ActivatedRoute){
         
@@ -93,7 +95,8 @@ export class NewUserComponent implements
         this._service.addUser(this._user)
                     .subscribe(u => {
                         this._signupform.reset()
-                        this._router.navigate(['users'])
+                        this._router.navigate(['users']);
+                        this._notificationService.setNotificationCounter(1);
             })
     }
 
