@@ -1,3 +1,4 @@
+import { AuthService } from './../shared/services/authentication/auth.service';
 import { SharedModule } from './../shared/shared.modules';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -16,6 +17,6 @@ import { UserProfileComponent } from './user-profile.component';
     declarations: [
         UserProfileComponent
     ],
-    providers: [],
+    providers: [ AuthService],
 })
 export class UserProfileModule { }

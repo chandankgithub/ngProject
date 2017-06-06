@@ -9,23 +9,26 @@ import * as auth0 from "auth0-js";
 @Injectable()
 export class AuthService {
 
-  auth0 = new auth0.WebAuth({
+  private auth0 = new auth0.WebAuth({
     clientID: 'JATZu4dFFAlKgFD0GhmdP4pjVDd57psQ',
     domain: 'chandank.auth0.com',
     responseType: 'token id_token',
     audience: 'https://chandank.auth0.com/userinfo',
-    redirectUri: 'http://localhost:3000/',      
-    scope: 'openid'
+    redirectUri: 'http://localhost:3000/',
+    scope: 'openid profile'
   });
+
+  public userProfile: any;
 
   constructor(public router: Router) {
 
   }
 
   public handleAuthentication(): void {
-    this.auth0.parseHash(window.location.hash,(err, authResult) => {
+    this.auth0.parseHash(window.location.hash, (err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
+        console.log(authResult)
         this.setSession(authResult);
         this.router.navigate(['/home']);
       } else if (err) {
@@ -35,12 +38,27 @@ export class AuthService {
     });
   }
 
-  private setSession(authResult?:any): void {
+  private setSession(authResult?: any): void {
     // Set the time that the access token will expire at
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+  }
+
+  public getUserProfile(callback:any) {
+    let token = localStorage.getItem('access_token');
+    try {
+      this.auth0.client.userInfo(token, (err, profile) => {
+        console.log(profile)
+        this.userProfile = profile;
+        callback(err, profile);
+      })
+    }
+    catch (e) {
+      console.log(e)
+    }
+
   }
 
   public logout(): void {
@@ -58,7 +76,7 @@ export class AuthService {
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
   }
-   public login(): void {
-     this.auth0.authorize({});
+  public login(): void {
+    this.auth0.authorize({});
   }
 }
