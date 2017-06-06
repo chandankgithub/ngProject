@@ -92,6 +92,7 @@ export class NewUserComponent implements
     }
 
     addUser(){
+        this._notificationService.setNotificationCounter(1);
         this._service.addUser(this._user)
                     .subscribe(u => {
                         this._signupform.reset()
@@ -106,7 +107,8 @@ export class NewUserComponent implements
             this._service.editUser(this._user)
                 .subscribe( u => {
                         this._signupform.reset();
-                        this._router.navigate(['users'])
+                        this._router.navigate(['users']);
+                        this._notificationService.setNotificationCounter(1);
             })
         }
                     

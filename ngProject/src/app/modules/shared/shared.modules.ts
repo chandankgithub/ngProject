@@ -1,3 +1,4 @@
+import { UserProfileRouting } from './../user-profile/user-profile.routing';
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
@@ -19,6 +20,7 @@ import { PostsRouting } from '../posts/posts.routing'
         HomeRouting,
         PostsRouting,
         UsersRouting, 
+        UserProfileRouting,
         AppRouting //parent routing
     ],
     declarations:[

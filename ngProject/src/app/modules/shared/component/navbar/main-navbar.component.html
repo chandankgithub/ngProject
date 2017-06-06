@@ -30,7 +30,12 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="auth.isAuthenticated() && _notifcationCounter > 0">
-                    <a href="#" >Notifications <span class="badge">{{_notifcationCounter}}</span></a>
+                    <a href="#" ><span class="badge">{{_notifcationCounter}}</span></a>
+                </li>
+                 <li routerLinkActive="active">
+                        <a 
+                            *ngIf="auth.isAuthenticated()"
+                            routerLink="userprofile">Profile</a>
                 </li>
                 <li>
                     <a  href="#"
