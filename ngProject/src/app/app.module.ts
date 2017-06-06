@@ -1,3 +1,4 @@
+import { AvatarService } from './modules/shared/services/avatar.service';
 import { UserProfileModule } from './modules/user-profile/user-profile.module';
 import { NotificationService } from './modules/shared/services/notification.service';
 import { AuthService } from './modules/shared/services/authentication/auth.service';
@@ -33,7 +34,8 @@ import { PreventUnsavedChangesGuardService } from './route-guards/prevent-unsave
   providers: [
       PreventUnsavedChangesGuardService,
       AuthService,
-      NotificationService
+      NotificationService,
+      AvatarService
   ]
 
 })

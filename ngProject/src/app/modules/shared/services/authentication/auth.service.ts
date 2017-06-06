@@ -28,7 +28,6 @@ export class AuthService {
     this.auth0.parseHash(window.location.hash, (err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
-        console.log(authResult)
         this.setSession(authResult);
         this.router.navigate(['/home']);
       } else if (err) {
@@ -50,7 +49,6 @@ export class AuthService {
     let token = localStorage.getItem('access_token');
     try {
       this.auth0.client.userInfo(token, (err, profile) => {
-        console.log(profile)
         this.userProfile = profile;
         callback(err, profile);
       })

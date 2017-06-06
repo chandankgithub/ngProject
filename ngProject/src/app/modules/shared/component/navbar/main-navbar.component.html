@@ -35,7 +35,10 @@
                  <li routerLinkActive="active">
                         <a 
                             *ngIf="auth.isAuthenticated()"
-                            routerLink="userprofile">Profile</a>
+                            routerLink="userprofile">
+                            <avatar [url]="_avatar"></avatar>
+                            
+                        </a>
                 </li>
                 <li>
                     <a  href="#"

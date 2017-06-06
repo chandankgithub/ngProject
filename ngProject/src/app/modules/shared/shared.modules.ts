@@ -1,3 +1,4 @@
+import { AvatarComponent } from './component/avatar/avatar.component';
 import { UserProfileRouting } from './../user-profile/user-profile.routing';
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
@@ -26,7 +27,8 @@ import { PostsRouting } from '../posts/posts.routing'
     declarations:[
         MainNavbarComponent,
         PaginationComponent,
-        SpinnerComponent
+        SpinnerComponent,
+        AvatarComponent
     ],
     providers:[
 
@@ -34,7 +36,8 @@ import { PostsRouting } from '../posts/posts.routing'
     exports:[
         MainNavbarComponent,
         PaginationComponent,
-        SpinnerComponent
+        SpinnerComponent,
+        AvatarComponent
     ]
 })
 
