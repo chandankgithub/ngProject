@@ -20,6 +20,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class UserProfileComponent implements OnInit {
     private profile: any;
+    private showUploader:boolean=false;
 
     constructor(private _authService: AuthService) { }
 
@@ -39,5 +40,9 @@ export class UserProfileComponent implements OnInit {
      userProfileCallback(err:any, profile:any){
         this.profile=profile;
         console.log(this.profile)
+     }
+
+     toggleUploader(){
+         this.showUploader = !this.showUploader;
      }
 }

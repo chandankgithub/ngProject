@@ -1,3 +1,4 @@
+import { FileUploaderComponent } from './component/file-uploader/file-uploader.component';
 import { AvatarComponent } from './component/avatar/avatar.component';
 import { UserProfileRouting } from './../user-profile/user-profile.routing';
 import { NgModule } from '@angular/core'
@@ -28,7 +29,8 @@ import { PostsRouting } from '../posts/posts.routing'
         MainNavbarComponent,
         PaginationComponent,
         SpinnerComponent,
-        AvatarComponent
+        AvatarComponent,
+        FileUploaderComponent
     ],
     providers:[
 
@@ -37,7 +39,8 @@ import { PostsRouting } from '../posts/posts.routing'
         MainNavbarComponent,
         PaginationComponent,
         SpinnerComponent,
-        AvatarComponent
+        AvatarComponent,
+        FileUploaderComponent
     ]
 })
 
