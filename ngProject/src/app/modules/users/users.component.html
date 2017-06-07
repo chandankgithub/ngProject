@@ -26,8 +26,17 @@
                     </div>
                 </td>
             </tr>
-            <tr *ngFor="let user of users">
-                <td>{{user.name}}</td>
+            <tr *ngFor="let user of users, let i=index">
+                <td>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img width="30px" class="media-object img-circle" src="http://lorempixel.com/80/80/people/?random={{i}}">
+                        </div>
+                        <div>
+                            <span>{{user.name}} </span>
+                        </div>
+                    </div>
+                </td>
                 <td>{{user.email}}</td>
                 <td>
                     <a [routerLink]="[user.id]" class="glyphicon glyphicon-edit"></a>
