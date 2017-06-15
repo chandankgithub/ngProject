@@ -1,11 +1,12 @@
 //dependencies
-let express = require('express')
+let express = require('express');
+let http=require('http');
 
 
 //server
-let server = express();
+let app = express();
 let routes = require('./routes')
-server.use('/api', routes);
+app.use('/api', routes);
 
 
 // global controller -- using CORS instead
@@ -17,10 +18,17 @@ server.use('/api', routes);
 // });
 
 
-server.get('/',function(req, res){
+app.get('/',function(req, res){
     res.send('<html> <h1> This is home and it is working </h1></html>')
 });
+
+
+let server = http.createServer(app);
 
 server.listen(8000, function(res, resp){
     console.log('sever is up and running')
 });
+
+
+var updater=require("./updater");
+updater.init(server);

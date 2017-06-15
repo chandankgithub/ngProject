@@ -7,6 +7,7 @@ import { IFormComponent } from '../../common-lib/IFormComponent'
 import { User, UserAddress } from './User'
 import { UserFormValidator } from './user-form.validator'
 import { UserService } from './user.service'
+import * as io from 'socket.io-client'
 
 @Component({
     selector: 'new-user',
@@ -24,7 +25,8 @@ export class NewUserComponent implements
     private errorCodes={
         NOT_FOUND: 404
     }
-    
+    socket = io('http://localhost:8000');
+
     constructor(private _service: UserService,
                 private _notificationService: NotificationService,
                 private _router: Router,
